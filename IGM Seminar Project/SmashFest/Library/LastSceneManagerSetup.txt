@@ -1,5 +1,6 @@
 sceneSetups:
-- path: Assets/Scenes/Game.unity
+- path: //banner.main.ad.rit.edu/students/ira8296/IGMProfile/Desktop/IGME 430/SmashFest/IGM
+    Seminar Project/GameServer/Assets/Scenes/Main.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
