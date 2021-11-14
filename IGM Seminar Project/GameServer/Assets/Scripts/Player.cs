@@ -6,9 +6,16 @@ public class Player : MonoBehaviour
 {
     public int id;
     public string username;
+    public CharacterController controller;
+    public float moveSpeed = 0.1f;
 
-    private float moveSpeed = 5f / Constants.TICKS_PER_SEC;
     private bool[] inputs;
+    private float yVelocity = 0;
+
+    private void Start()
+    {
+        moveSpeed *= Time.fixedDeltaTime;
+    }
 
     public void Initialize(int _id, string _username)
     {
@@ -43,10 +50,11 @@ public class Player : MonoBehaviour
 
     private void Move(Vector2 _inputDirection)
     {
-        
-
         Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
-        transform.position += _moveDirection * moveSpeed;
+        _moveDirection *= moveSpeed;
+
+        _moveDirection.y = yVelocity;
+        controller.Move(_moveDirection);
 
         ServerSend.PlayerPosition(this);
         ServerSend.PlayerRotation(this);
