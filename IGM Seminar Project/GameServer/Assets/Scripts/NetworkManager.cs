@@ -22,6 +22,7 @@ namespace Solution1
                 Debug.Log("Instance already exists, destroying object!");
                 Destroy(this);
             }
+            Debug.Log("Network Manager: " + instance);
         }
 
         private void Start()
