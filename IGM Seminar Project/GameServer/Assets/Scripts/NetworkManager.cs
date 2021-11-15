@@ -16,6 +16,7 @@ namespace Solution1
             if (instance == null)
             {
                 instance = this;
+                DontDestroyOnLoad(this);
             }
             else if (instance != this)
             {
@@ -32,6 +33,11 @@ namespace Solution1
             Application.targetFrameRate = 30;
 
             Server.Start(4, 26950);
+        }
+
+        private void Update()
+        {
+            int x = 10;
         }
 
         private void OnApplicationQuit()
