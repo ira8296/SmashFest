@@ -1,25 +1,19 @@
 {
   "name": "com.IkeAjah.github",
   "version": "1.2.3",
-  "displayName": "Package Example",
-  "description": "This is an example package",
-  "unity": "2019.1",
-  "unityRelease": "0b5",
-  "documentationUrl": "https://example.com/",
-  "changelogUrl": "https://example.com/changelog.html",
-  "licensesUrl": "https://example.com/licensing.html",
-  "dependencies": {
-    "com.[company-name].some-package": "1.0.0",
-    "com.[company-name].other-package": "2.0.0"
- },
+  "displayName": "SmashFest",
+  "description": "A game project for IGM Seminar which incorporates Unity and multiplayer networking",
+  "unity": "2020.3",
+  "unityRelease": "18f1",
  "keywords": [
-    "keyword1",
-    "keyword2",
-    "keyword3"
+    "unity",
+    "multiplayer",
+    "monster-trucks",
+    "demolition-derby"
+
   ],
   "author": {
-    "name": "Unity",
-    "email": "unity@example.com",
-    "url": "https://www.unity3d.com"
+    "name": "Ike Ajah",
+    "email": "ira8296@rit.edu"
   }
 }

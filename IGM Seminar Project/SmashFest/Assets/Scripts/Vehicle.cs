@@ -49,7 +49,7 @@ public class Vehicle : MonoBehaviour
     void Start()
     {
         thrust = 0.0f;
-        position = new Vector3(-15, 5, -1);
+        //position = new Vector3(-15, 5, -1);
         direction = new Vector3(0, 1);
         velocity = new Vector3(0, 0);
         acceleration = new Vector3(0, 0);
@@ -58,7 +58,7 @@ public class Vehicle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(this.gameObject != null)
         {
@@ -120,9 +120,9 @@ public class Vehicle : MonoBehaviour
 
         position += velocity;
 
-        //SendInputToServer();
-
         WrapAround();
+
+        SendInputToServer();
 
         SetTransform();
     }

@@ -29,6 +29,7 @@ public class Client
         private NetworkStream stream;
         private Packet receivedData;
         private byte[] receiveBuffer;
+
         public TCP(int _id)
         {
             id = _id;

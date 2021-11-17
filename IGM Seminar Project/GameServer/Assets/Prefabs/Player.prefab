@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   username: 
+  controller: {fileID: 1966376034622750654}
+  moveSpeed: 0.1
 --- !u!143 &1966376034622750654
 CharacterController:
   m_ObjectHideFlags: 0

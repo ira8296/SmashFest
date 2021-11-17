@@ -7,14 +7,31 @@ public class Player : MonoBehaviour
     public int id;
     public string username;
     public CharacterController controller;
+
+    public Vector3 position;
+    public Vector3 direction;
+    public Vector3 velocity;
+    public Vector3 acceleration;
+
+    enum Direction { Left, Right, Forward, Backward }
+
     public float moveSpeed = 0.1f;
+    public float maxSpeed = 0.3f;
+    public float thrust = 0.0f;
+    float accelerationInput = 0;
+    float steeringInput = 0;
+    float rotationAngle = 0;
 
     private bool[] inputs;
-    private float yVelocity = 0;
 
     private void Start()
     {
         moveSpeed *= Time.fixedDeltaTime;
+
+        thrust = 0.0f;
+        direction = new Vector3(0, 1);
+        velocity = new Vector3(0, 0);
+        acceleration = new Vector3(0, 0);
     }
 
     public void Initialize(int _id, string _username)
@@ -30,25 +47,50 @@ public class Player : MonoBehaviour
         Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
         {
-            _inputDirection.y += 1;
+            Turn(Direction.Right);
         }
         if (inputs[1])
         {
-            _inputDirection.y -= 1;
+            Turn(Direction.Left);
         }
         if (inputs[2])
         {
-            _inputDirection.x += 1;
+            Advance(Direction.Forward);
+            moveSpeed = 0.1f;
+            thrust = 0.1f;
         }
         if (inputs[3])
         {
-            _inputDirection.x -= 1;
+            Advance(Direction.Backward);
+            moveSpeed = -0.1f;
+            thrust = -0.1f;
+        }
+        if (inputs[4])
+        {
+            thrust = 0.0f;
+            velocity = Vector3.zero;
+        }
+        if (inputs[5])
+        {
+            thrust = 0.0f;
+            velocity = Vector3.zero;
         }
 
-        Move(_inputDirection);
+        acceleration = thrust * direction;
+        velocity += acceleration * Time.deltaTime;
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        Debug.DrawLine(position, position + velocity);
+
+        position += velocity;
+
+        WrapAround();
+
+        SetTransform();
+
+        //Move(_inputDirection);
     }
 
-    private void Move(Vector2 _inputDirection)
+    /*private void Move(Vector2 _inputDirection)
     {
         Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
         _moveDirection *= moveSpeed;
@@ -58,11 +100,71 @@ public class Player : MonoBehaviour
 
         ServerSend.PlayerPosition(this);
         ServerSend.PlayerRotation(this);
+    }*/
+
+    void Turn(Direction d)
+    {
+        if (d == Direction.Left)
+        {
+            direction = Quaternion.Euler(0, 0, -1f) * direction;
+        }
+        else if (d == Direction.Right)
+        {
+            direction = Quaternion.Euler(0, 0, 1f) * direction;
+        }
+
+    }
+
+    void Advance(Direction d)
+    {
+        if (d == Direction.Forward)
+        {
+            thrust += 0.1f;
+            moveSpeed = moveSpeed + 0.1f;
+        }
+        else if (d == Direction.Backward)
+        {
+            thrust += 0.1f;
+            moveSpeed = moveSpeed + 0.1f;
+        }
+
+    }
+
+    void WrapAround()
+    {
+        if (position.x > 20.03f)
+        {
+            position.x = -19.0f;
+        }
+        if (position.x < -19.93f)
+        {
+            position.x = 20.0f;
+        }
+        if (position.y > 10.15f)
+        {
+            position.y = -9.0f;
+        }
+        if (position.y < -9.83f)
+        {
+            position.y = 10.0f;
+        }
+    }
+
+    void SetTransform()
+    {
+        float angle = Mathf.Atan2(direction.x, direction.y);
+        angle *= Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.position = position;
+
+        ServerSend.PlayerPosition(this);
+        ServerSend.PlayerRotation(this);
     }
 
     public void SetInput(bool[] _inputs, Quaternion _rotation)
     {
         inputs = _inputs;
         transform.rotation = _rotation;
+        transform.position = position;
     }
 }

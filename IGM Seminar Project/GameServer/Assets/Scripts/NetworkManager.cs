@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Solution1
-{
     public class NetworkManager : MonoBehaviour
     {
         public static NetworkManager instance;
@@ -50,4 +48,3 @@ namespace Solution1
             return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Player>();
         }
     }
-}
