@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         id = _id;
         username = _username;
 
-        inputs = new bool[4];
+        inputs = new bool[6];
     }
 
     public void FixedUpdate()
