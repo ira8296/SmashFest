@@ -110,7 +110,7 @@ public class Server
 
     private static void InitializeServerData()
     {
-        for (int i = 1; i < MaxPlayers; i++)
+        for (int i = 1; i <= MaxPlayers; i++)
         {
             clients.Add(i, new Client(i));
         }

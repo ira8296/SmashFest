@@ -86,7 +86,7 @@ public class SceneManager : MonoBehaviour
             players.Add(p3);
             players.Add(p4);
 
-            for(int n = 0; n < players.Count; n++)
+            /*for(int n = 0; n < players.Count; n++)
             {
                 if(players[n] != null)
                 {
@@ -100,7 +100,7 @@ public class SceneManager : MonoBehaviour
                         Destroy(players[n]);
                     }
                 }
-            }
+            }*/
 
             if(players.Count == 1)
             {

@@ -42,6 +42,7 @@ public class ServerSend
         _packet.WriteLength();
         for (int i = 1; i <= Server.MaxPlayers; i++)
         {
+            Debug.Log(i);
             Server.clients[i].udp.SendData(_packet);
         }
     }

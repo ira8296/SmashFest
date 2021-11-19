@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public int id;
     public string username;
+    public int health;
+    public int score;
     public CharacterController controller;
 
     public Vector3 position;
@@ -24,6 +26,25 @@ public class Player : MonoBehaviour
 
     private bool[] inputs;
 
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+    public int Score
+    {
+        get { return score; }
+    }
+    public Vector3 Vector
+    {
+        get { return direction; }
+    }
+    public Vector3 Local
+    {
+        get { return position; }
+        set { position = value; }
+    }
+
     private void Start()
     {
         moveSpeed *= Time.fixedDeltaTime;
@@ -38,6 +59,8 @@ public class Player : MonoBehaviour
     {
         id = _id;
         username = _username;
+        health = 100;
+        score = 0;
 
         inputs = new bool[6];
     }
