@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
     public void FixedUpdate()
     {
-        Vector2 _inputDirection = Vector2.zero;
+        //Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
         {
             Turn(Direction.Right);
@@ -99,6 +99,11 @@ public class Player : MonoBehaviour
             velocity = Vector3.zero;
         }
 
+        Move(direction);
+    }
+
+    private void Move(Vector2 _inputDirection)
+    {
         acceleration = thrust * direction;
         velocity += acceleration * Time.deltaTime;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
@@ -108,22 +113,11 @@ public class Player : MonoBehaviour
 
         WrapAround();
 
-        SetTransform();
-
-        //Move(_inputDirection);
-    }
-
-    /*private void Move(Vector2 _inputDirection)
-    {
-        Vector3 _moveDirection = transform.right * _inputDirection.x + transform.forward * _inputDirection.y;
-        _moveDirection *= moveSpeed;
-
-        _moveDirection.y = yVelocity;
-        controller.Move(_moveDirection);
+        controller.Move(_inputDirection);
 
         ServerSend.PlayerPosition(this);
         ServerSend.PlayerRotation(this);
-    }*/
+    }
 
     void Turn(Direction d)
     {
@@ -173,21 +167,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SetTransform()
+    public void SetInput(bool[] _inputs)
     {
+        inputs = _inputs;
         float angle = Mathf.Atan2(direction.x, direction.y);
         angle *= Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        transform.position = position;
-
-        ServerSend.PlayerPosition(this);
-        ServerSend.PlayerRotation(this);
-    }
-
-    public void SetInput(bool[] _inputs, Quaternion _rotation)
-    {
-        inputs = _inputs;
-        transform.rotation = _rotation;
         transform.position = position;
     }
 }

@@ -26,6 +26,6 @@ public class ServerHandle
         }
         Quaternion _rotation = _packet.ReadQuaternion();
 
-        Server.clients[_fromClient].player.SetInput(_inputs, _rotation);
+        Server.clients[_fromClient].player.SetInput(_inputs);
     }
 }
