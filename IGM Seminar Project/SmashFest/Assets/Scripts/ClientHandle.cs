@@ -30,6 +30,7 @@ public class ClientHandle : MonoBehaviour
 
     public static void PlayerPosition(Packet _packet)
     {
+        Debug.Log("Receiving position...");
         int _id = _packet.ReadInt();
         Vector3 _position = _packet.ReadVector3();
 
