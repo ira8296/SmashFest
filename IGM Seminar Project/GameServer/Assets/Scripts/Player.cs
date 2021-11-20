@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
 
     public void FixedUpdate()
     {
-        //Vector2 _inputDirection = Vector2.zero;
         if (inputs[0])
         {
             Turn(Direction.Right);
