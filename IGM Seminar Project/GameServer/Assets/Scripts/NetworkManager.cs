@@ -33,11 +33,6 @@ using UnityEngine;
             Server.Start(4, 26950);
         }
 
-        private void Update()
-        {
-            int x = 10;
-        }
-
         private void OnApplicationQuit()
         {
             Server.Stop();

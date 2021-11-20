@@ -213,6 +213,7 @@ public class Client : MonoBehaviour
                 _packet.InsertInt(instance.myId);
                 if(socket != null)
                 {
+                    Debug.Log("Sending data...");
                     socket.BeginSend(_packet.ToArray(), _packet.Length(), null, null);
                 }
             }

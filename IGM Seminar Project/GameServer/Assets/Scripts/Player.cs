@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public string username;
     public int health;
     public int score;
-    public CharacterController controller;
 
     public Vector3 position;
     public Vector3 direction;
@@ -47,7 +46,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        moveSpeed *= Time.fixedDeltaTime;
+        //moveSpeed *= Time.fixedDeltaTime;
 
         thrust = 0.0f;
         direction = new Vector3(0, 1);
@@ -99,10 +98,10 @@ public class Player : MonoBehaviour
             velocity = Vector3.zero;
         }
 
-        Move(direction);
+        Move();
     }
 
-    private void Move(Vector2 _inputDirection)
+    private void Move()
     {
         acceleration = thrust * direction;
         velocity += acceleration * Time.deltaTime;
@@ -112,8 +111,6 @@ public class Player : MonoBehaviour
         position += velocity;
 
         WrapAround();
-
-        controller.Move(_inputDirection);
 
         ServerSend.PlayerPosition(this);
         ServerSend.PlayerRotation(this);

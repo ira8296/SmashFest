@@ -14,6 +14,7 @@ public class Vehicle : MonoBehaviour
 
     private void SendInputToServer()
     {
+        Debug.Log("Updating player movement...");
         bool[] _inputs = new bool[]
         {
             Input.GetKey(KeyCode.LeftArrow),
