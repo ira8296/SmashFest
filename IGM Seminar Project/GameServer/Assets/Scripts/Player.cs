@@ -19,9 +19,6 @@ public class Player : MonoBehaviour
     public float moveSpeed = 0.1f;
     public float maxSpeed = 0.3f;
     public float thrust = 0.0f;
-    float accelerationInput = 0;
-    float steeringInput = 0;
-    float rotationAngle = 0;
 
     private bool[] inputs;
 
