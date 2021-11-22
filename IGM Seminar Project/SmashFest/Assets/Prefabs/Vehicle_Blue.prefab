@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1858231596594771266}
   m_Layer: 0
   m_Name: Vehicle_Blue
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,15 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80659a79e4986b642940c98da7e00c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  acceleration: {x: 0, y: 0, z: 0}
-  health: 0
-  score: 0
-  speed: 0.1
-  maxSpeed: 0.5
-  thrust: 0
 --- !u!50 &-4579195724215726372
 Rigidbody2D:
   serializedVersion: 4
@@ -168,3 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   username: 
+  health: 0
+  maxHealth: 100
+  model: {fileID: 0}

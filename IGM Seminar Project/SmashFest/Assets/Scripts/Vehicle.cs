@@ -19,10 +19,9 @@ public class Vehicle : MonoBehaviour
         {
             Input.GetKey(KeyCode.LeftArrow),
             Input.GetKey(KeyCode.RightArrow),
-            Input.GetKeyDown(KeyCode.UpArrow),
-            Input.GetKeyDown(KeyCode.DownArrow),
-            Input.GetKeyUp(KeyCode.UpArrow),
-            Input.GetKeyUp(KeyCode.DownArrow),
+            Input.GetKey(KeyCode.UpArrow),
+            Input.GetKey(KeyCode.DownArrow),
+            Input.GetKey(KeyCode.Space)
         };
 
         ClientSend.PlayerMovement(_inputs);

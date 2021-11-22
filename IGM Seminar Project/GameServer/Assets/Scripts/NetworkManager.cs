@@ -26,7 +26,6 @@ using UnityEngine;
 
         private void Start()
         {
-
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 30;
 
